@@ -10,6 +10,7 @@ import StockPage from "./pages/StockPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import type { Product } from "./types";
+// import * as api from "./api"; // Đã chuyển logic vào hooks
 
 type Route =
   | "home"

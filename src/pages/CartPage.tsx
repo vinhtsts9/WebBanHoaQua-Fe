@@ -1,4 +1,3 @@
-import React from "react";
 import { useCart } from "../context/CartContext";
 import { getProductImage } from "../assets/images";
 

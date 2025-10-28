@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react"; // Bỏ import React vì không cần
 import type { Product } from "../types";
 import { useCart } from "../context/CartContext";
 import { getProductImage } from "../assets/images";

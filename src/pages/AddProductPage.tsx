@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import type { Product } from "../types";
+import { useState } from "react";
 import { useAddProduct } from "../hooks/useAddProduct";
 
 interface AddProductPageProps {
@@ -7,10 +6,7 @@ interface AddProductPageProps {
   onCancel: () => void;
 }
 
-export default function AddProductPage({
-  onSave,
-  onCancel,
-}: AddProductPageProps) {
+export default function AddProductPage({ onCancel }: AddProductPageProps) {
   const [formData, setFormData] = useState({
     ten_sp: "",
     don_gia: "",
@@ -57,11 +53,7 @@ export default function AddProductPage({
     return Object.keys(newErrors).length === 0;
   };
 
-  const {
-    addProduct,
-    loading,
-    error: apiError,
-  } = useAddProduct((product) => {
+  const { addProduct } = useAddProduct((product) => {
     alert(`Đã thêm sản phẩm ${product.ten_sp}`);
   });
 
