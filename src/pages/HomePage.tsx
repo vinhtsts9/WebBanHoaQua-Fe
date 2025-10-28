@@ -97,64 +97,102 @@ export default function HomePage({
           justifyContent: "center",
         }}
       >
-        <div
-          style={{
-            // allow the main search/hero container to expand more on wide screens
-            // previously capped at 1100px which constrained wide layouts
-            width: "min(1400px, 96%)",
-            display: "flex",
-            alignItems: "center",
-            background: "#fff",
-            borderRadius: 999,
-            padding: "10px 14px",
-            boxShadow: "0 6px 20px rgba(0,0,0,0.1)",
-          }}
-        >
+        <div style={{ position: "relative", width: "min(1400px, 96%)" }}>
           <div
             style={{
-              width: 36,
+              // allow the main search/hero container to expand more on wide screens
+              // previously capped at 1100px which constrained wide layouts
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
-              color: "#9aa0a6",
-              fontSize: 18,
+              background: "#fff",
+              borderRadius: 999,
+              padding: "10px 14px",
+              boxShadow: "0 6px 20px rgba(0,0,0,0.1)",
             }}
           >
-            🔍
+            <div
+              style={{
+                width: 36,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#9aa0a6",
+                fontSize: 18,
+              }}
+            >
+              🔍
+            </div>
+
+            <input
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="Tìm trái cây tươi ngon..."
+              style={{
+                flex: 1,
+                border: "none",
+                outline: "none",
+                fontSize: 16,
+                padding: "6px 10px",
+                color: "#333",
+                background: "transparent",
+              }}
+            />
+
+            <button
+              onClick={() => {
+                /* noop */
+              }}
+              style={{
+                marginLeft: 8,
+                padding: "8px 16px",
+                background: "#2b6a32",
+                color: "#fff",
+                border: "none",
+                borderRadius: 8,
+                cursor: "pointer",
+                fontWeight: 500,
+              }}
+            >
+              Tìm
+            </button>
           </div>
-
-          <input
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder="Tìm trái cây tươi ngon..."
-            style={{
-              flex: 1,
-              border: "none",
-              outline: "none",
-              fontSize: 16,
-              padding: "6px 10px",
-              color: "#333",
-              background: "transparent",
-            }}
-          />
-
-          <button
-            onClick={() => {
-              /* noop */
-            }}
-            style={{
-              marginLeft: 8,
-              padding: "8px 16px",
-              background: "#2b6a32",
-              color: "#fff",
-              border: "none",
-              borderRadius: 8,
-              cursor: "pointer",
-              fontWeight: 500,
-            }}
-          >
-            Tìm
-          </button>
+          {suggestions.length > 0 && (
+            <div
+              style={{
+                position: "absolute",
+                top: "100%",
+                left: 0,
+                right: 0,
+                background: "white",
+                borderRadius: 8,
+                boxShadow: "0 8px 16px rgba(0,0,0,0.1)",
+                marginTop: 8,
+                zIndex: 10,
+                padding: "8px 0",
+              }}
+            >
+              {suggestions.map((p) => (
+                <div
+                  key={p.ma_sp}
+                  onClick={() => onProductClick && onProductClick(p)}
+                  style={{
+                    padding: "10px 20px",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 12,
+                  }}
+                >
+                  <img
+                    src={getProductImage(p.ten_sp)}
+                    alt={p.ten_sp}
+                    style={{ width: 40, height: 40, objectFit: "cover" }}
+                  />
+                  <span>{p.ten_sp}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
